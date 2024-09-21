@@ -68,7 +68,7 @@ public final class TankDrive {
                 RevHubOrientationOnRobot.LogoFacingDirection.UP;
         public RevHubOrientationOnRobot.UsbFacingDirection usbFacingDirection =
                 RevHubOrientationOnRobot.UsbFacingDirection.FORWARD;
-
+        //git test zichao
         // drive model parameters
         public double inPerTick = 0;
         public double trackWidthTicks = 0;
@@ -95,7 +95,6 @@ public final class TankDrive {
         public double turnGain = 0.0;
         public double turnVelGain = 0.0;
     }
-
     public static Params PARAMS = new Params();
 
     public final TankKinematics kinematics = new TankKinematics(PARAMS.inPerTick * PARAMS.trackWidthTicks);
