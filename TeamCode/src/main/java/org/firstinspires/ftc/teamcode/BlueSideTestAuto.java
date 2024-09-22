@@ -19,63 +19,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 @Config
 @Autonomous(name = "BLUE_TEST_AUTO_PIXEL", group = "Autonomous")
 public class BlueSideTestAuto extends LinearOpMode {
-    public class Lift {
-        private DcMotorEx lift;
 
-        public Lift(HardwareMap hardwareMap) {
-            lift = hardwareMap.get(DcMotorEx.class, "liftMotor");
-            lift.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
-            lift.setDirection(DcMotorSimple.Direction.FORWARD);
-        }
-
-        public class LiftUp implements Action {
-            private boolean initialized = false;
-
-            @Override
-            public boolean run(@NonNull TelemetryPacket packet) {
-                if (!initialized) {
-                    lift.setPower(0.8);
-                    initialized = true;
-                }
-
-                double pos = lift.getCurrentPosition();
-                packet.put("liftPos", pos);
-                if (pos < 3000.0) {
-                    return true;
-                } else {
-                    lift.setPower(0);
-                    return false;
-                }
-            }
-        }
-        public Action liftUp() {
-            return new LiftUp();
-        }
-
-        public class LiftDown implements Action {
-            private boolean initialized = false;
-
-            @Override
-            public boolean run(@NonNull TelemetryPacket packet) {
-                if (!initialized) {
-                    lift.setPower(-0.8);
-                    initialized = true;
-                }
-
-                double pos = lift.getCurrentPosition();
-                packet.put("liftPos", pos);
-                if (pos > 100.0) {
-                    return true;
-                } else {
-                    lift.setPower(0);
-                    return false;
-                }
-            }
-        }
-        public Action liftDown(){
-            return new LiftDown();
-        }
-    }
 
     public class Claw {
         private Servo claw;
@@ -111,6 +55,7 @@ public class BlueSideTestAuto extends LinearOpMode {
     public void runOpMode() {
 
         MecanumDrive drive = new MecanumDrive(hardwareMap, new Pose2d(11.8, 61.7, Math.toRadians(90)));
+
         Claw claw = new Claw(hardwareMap);
         Lift lift = new Lift(hardwareMap);
 
@@ -120,6 +65,7 @@ public class BlueSideTestAuto extends LinearOpMode {
         Action trajectoryAction1;
         Action trajectoryAction2;
         Action trajectoryAction3;
+
         Action trajectoryActionCloseOut;
 
         trajectoryAction1 = drive.actionBuilder(drive.pose)
@@ -149,6 +95,7 @@ public class BlueSideTestAuto extends LinearOpMode {
                 .strafeTo(new Vector2d(46, 30))
                 .waitSeconds(3)
                 .build();
+
         trajectoryActionCloseOut = drive.actionBuilder(drive.pose)
                 .strafeTo(new Vector2d(48, 12))
                 .build();
