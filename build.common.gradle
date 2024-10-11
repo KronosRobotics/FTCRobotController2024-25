@@ -22,7 +22,8 @@ apply plugin: 'com.android.application'
 android {
 
     compileSdkVersion 29
-
+    android.buildFeatures.buildConfig true
+    
     signingConfigs {
         release {
             def apkStoreFile = System.getenv("APK_SIGNING_STORE_FILE")
@@ -51,7 +52,6 @@ android {
         signingConfig signingConfigs.debug
         applicationId 'com.qualcomm.ftcrobotcontroller'
         minSdkVersion 24
-        android.buildFeatures.buildConfig true
         //noinspection ExpiredTargetSdkVersion
         targetSdkVersion 28
 
