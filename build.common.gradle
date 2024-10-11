@@ -51,6 +51,7 @@ android {
         signingConfig signingConfigs.debug
         applicationId 'com.qualcomm.ftcrobotcontroller'
         minSdkVersion 24
+        android.buildFeatures.buildConfig true
         //noinspection ExpiredTargetSdkVersion
         targetSdkVersion 28
 
@@ -118,4 +119,3 @@ android {
 
 repositories {
 }
-
