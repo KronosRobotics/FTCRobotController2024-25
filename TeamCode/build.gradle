@@ -17,7 +17,6 @@ apply from: '../build.dependencies.gradle'
 
 android {
     namespace = 'org.firstinspires.ftc.teamcode'
-
     packagingOptions {
         jniLibs.useLegacyPackaging true
     }
@@ -46,5 +45,4 @@ dependencies {
     implementation 'org.firstinspires.ftc:Vision:10.0.0'
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.acmerobotics.dashboard:dashboard:0.4.15'
-    implementation 'com.github.deltacv:EOCV-Sim:3.7.1'
 }
