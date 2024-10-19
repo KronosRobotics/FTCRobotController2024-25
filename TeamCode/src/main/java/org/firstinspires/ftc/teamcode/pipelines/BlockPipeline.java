@@ -17,7 +17,7 @@ public class BlockPipeline extends OpenCvPipeline {
         Imgproc.cvtColor(inputMat, frameHSV, Imgproc.COLOR_BGR2HSV);
         Mat thresh = new Mat();
         cvtColor(inputMat, frameHSV, COLOR_BGR2HSV);
-        inRange(frameHSV, new Scalar(0, 50, 50), new Scalar(30, 255, 255), thresh);
+        inRange(frameHSV, new Scalar(25, 87, 91), new Scalar(8, 87, 91), thresh);
         // Just returns contours rn
         return frameHSV;
     }
