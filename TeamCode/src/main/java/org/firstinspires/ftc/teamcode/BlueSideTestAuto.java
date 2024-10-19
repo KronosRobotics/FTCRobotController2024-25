@@ -54,10 +54,10 @@ public class BlueSideTestAuto extends LinearOpMode {
     @Override
     public void runOpMode() {
 
-        MecanumDrive drive = new MecanumDrive(hardwareMap, new Pose2d(11.8, 61.7, Math.toRadians(90)));
-
-        Claw claw = new Claw(hardwareMap);
-        Lift lift = new Lift(hardwareMap);
+        MecanumDrive drive = new MecanumDrive(hardwareMap, new Pose2d(57.78, 63.27, Math.toRadians(187.50)));
+//
+//        Claw claw = new Claw(hardwareMap);
+//        Lift lift = new Lift(hardwareMap);
 
         // vision here that outputs position
         int visionOutputPosition = 1;
@@ -67,6 +67,12 @@ public class BlueSideTestAuto extends LinearOpMode {
         Action trajectoryAction3;
 
         Action trajectoryActionCloseOut;
+
+        Action trajectory0 = drive.actionBuilder(new Pose2d(57.78, 63.27, Math.toRadians(187.50)))
+                .splineTo(new Vector2d(-9.44, 33.00), Math.toRadians(270.00))
+                .splineTo(new Vector2d(59.81, 32.19), Math.toRadians(3.39))
+                .splineTo(new Vector2d(57.38, 54.94), Math.toRadians(96.12))
+                .build();
 
         trajectoryAction1 = drive.actionBuilder(drive.pose)
                 .lineToYSplineHeading(33, Math.toRadians(0))
@@ -101,7 +107,7 @@ public class BlueSideTestAuto extends LinearOpMode {
                 .build();
 
         // actions that need to happen on init; for instance, a claw tightening.
-        Actions.runBlocking(claw.closeClaw());
+//        Actions.runBlocking(claw.closeClaw());
 
 
         while (!isStopRequested() && !opModeIsActive()) {
@@ -128,11 +134,11 @@ public class BlueSideTestAuto extends LinearOpMode {
 
         Actions.runBlocking(
                 new SequentialAction(
-                        trajectoryActionChosen,
-                        lift.liftUp(),
-                        claw.openClaw(),
-                        lift.liftDown(),
-                        trajectoryActionCloseOut
+                        trajectory0
+//                        lift.liftUp(),
+//                        claw.openClaw(),
+//                        lift.liftDown(),
+//                        trajectoryActionCloseOut
                 )
         );
     }
