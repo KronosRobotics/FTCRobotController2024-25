@@ -14,7 +14,7 @@ import org.opencv.core.MatOfPoint;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BlockPipeline extends OpenCvPipeline {
+public class BlockPipelineOCV extends OpenCvPipeline {
     @Override
     public Mat processFrame(Mat inputMat) {
         Mat frameHSV = new Mat();
