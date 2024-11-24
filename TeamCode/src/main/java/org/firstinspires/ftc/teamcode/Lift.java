@@ -19,6 +19,8 @@ public class Lift {
 
     public class LiftUp implements Action {
         private boolean initialized = false;
+        private int level = 1000;
+        public LiftUp(int x){level = x*1000;}
 
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
@@ -29,7 +31,7 @@ public class Lift {
 
             double pos = lift.getCurrentPosition();
             packet.put("liftPos", pos);
-            if (pos < 3000.0) {
+            if (pos < level) {
                 return true;
             } else {
                 lift.setPower(0);
@@ -37,8 +39,9 @@ public class Lift {
             }
         }
     }
-    public Action liftUp() {
-        return new LiftUp();
+
+    public Action liftUp(int x) {
+        return new LiftUp(x);
     }
 
     public class LiftDown implements Action {
